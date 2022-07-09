@@ -12,7 +12,7 @@ long_description = (here / "README.md").read_text(encoding="utf-8")
 setup(
     name="valorant-utils",
     version="0.2.0",
-    description="A discord utils module",
+    description="A valorant utils module",
     long_description=long_description,
     long_description_content_type="text/markdown",
     url="https://github.com/make-or-break/valorant-utils",
