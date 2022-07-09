@@ -37,7 +37,7 @@ setup(
         "Programming Language :: Python :: 3 :: Only",
         "Typing :: Typed",
     ],
-    install_requires=["requests == 2.28.0"],
+    install_requires=["requests ~= 2.28.0"],
     package_dir={"": "src/"},
     packages=find_packages(where="src/"),
 )

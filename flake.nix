@@ -19,7 +19,7 @@
 
         packages = flake-utils.lib.flattenTree rec {
 
-          valorant-utils = with pkgs.python310Packages;
+          valorant-utils = with pkgs.python3Packages;
             buildPythonPackage rec {
               pname = "valorant-utils";
               version = "0.2.0";
