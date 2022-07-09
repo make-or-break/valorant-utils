@@ -24,6 +24,9 @@ source .venv/bin/activate
 # install dependencies from requirements.txt
 pip3 install -r requirements.txt
 
+# enable pre-commit
+pre-commit install
+
 # install package in development mode (changes will take effect automatically)
 pip install -e .
 ```
