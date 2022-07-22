@@ -18,6 +18,22 @@ def milliseconds_to_time(milliseconds):
     return "%d:%02d" % (minutes, seconds)
 
 
+# we request a lot of different JSON api endpoints,
+# so we make a function to get the response
+# this reduces boilerplate code
+def get_response(url):
+    """
+    Get the response of a url.
+    """
+
+    response = requests.get(url)
+
+    if response.status_code == 200:
+        return response.json()
+    else:
+        return None
+
+
 ###############################################################################
 # code related to getting player stats
 
@@ -29,12 +45,7 @@ def get_player_json(Username, Tagline):
 
     api_url = "https://api.henrikdev.xyz/valorant/v2/mmr/eu/" + Username + "/" + Tagline
 
-    response = requests.get(api_url)
-
-    if response.status_code == 200:
-        return response.json()
-    else:
-        return None
+    return get_response(api_url)
 
 
 def get_player_json_by_puuid(puuid):
@@ -44,12 +55,7 @@ def get_player_json_by_puuid(puuid):
 
     api_url = "https://api.henrikdev.xyz/valorant/v2/by-puuid/mmr/eu/" + puuid
 
-    response = requests.get(api_url)
-
-    if response.status_code == 200:
-        return response.json()
-    else:
-        return None
+    return get_response(api_url)
 
 
 def get_elo(data):
@@ -119,12 +125,7 @@ def get_matches_json(Username, Tagline):
         + "?filter=competitive"
     )
 
-    response = requests.get(api_url)
-
-    if response.status_code == 200:
-        return response.json()
-    else:
-        return None
+    return get_response(api_url)
 
 
 def get_matches_json_by_puuid(puuid):
@@ -138,12 +139,7 @@ def get_matches_json_by_puuid(puuid):
         + "?filter=competitive"
     )
 
-    response = requests.get(api_url)
-
-    if response.status_code == 200:
-        return response.json()
-    else:
-        return None
+    return get_response(api_url)
 
 
 def get_matchid(data):
@@ -177,12 +173,7 @@ def get_mmr_json(puuid):
 
     api_url = "https://api.henrikdev.xyz/valorant/v1/by-puuid/mmr-history/eu/" + puuid
 
-    response = requests.get(api_url)
-
-    if response.status_code == 200:
-        return response.json()
-    else:
-        return None
+    return get_response(api_url)
 
 
 def get_mmr_change(data, date):
@@ -216,12 +207,7 @@ def get_match_json(matchid):
 
     api_url = "https://api.henrikdev.xyz/valorant/v2/match/" + matchid
 
-    response = requests.get(api_url)
-
-    if response.status_code == 200:
-        return response.json()
-    else:
-        return None
+    return get_response(api_url)
 
 
 def get_match_metadata(data):
