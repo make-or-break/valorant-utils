@@ -43,10 +43,13 @@ def get_player_json_by_puuid(puuid):
     """
 
     api_url = "https://api.henrikdev.xyz/valorant/v2/by-puuid/mmr/eu/" + puuid
-    response = requests.get(api_url)
-    data = response.json()
 
-    return data
+    response = requests.get(api_url)
+
+    if response.status_code == 200:
+        return response.json()
+    else:
+        return None
 
 
 def get_elo(data):
