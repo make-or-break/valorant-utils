@@ -21,12 +21,12 @@ def milliseconds_to_time(milliseconds):
 # we request a lot of different JSON api endpoints,
 # so we make a function to get the response
 # this reduces boilerplate code
-def get_response(url):
+def get_response(api_endpoint):
     """
     Get the response of a url.
     """
 
-    response = requests.get(url)
+    response = requests.get("https://api.henrikdev.xyz/valorant/" + api_endpoint)
 
     if response.status_code == 200:
         return response.json()
@@ -43,9 +43,9 @@ def get_player_json(Username, Tagline):
     Get the json data of a player.
     """
 
-    api_url = "https://api.henrikdev.xyz/valorant/v2/mmr/eu/" + Username + "/" + Tagline
+    api_endpoint = "v2/mmr/eu/" + Username + "/" + Tagline
 
-    return get_response(api_url)
+    return get_response(api_endpoint)
 
 
 def get_player_json_by_puuid(puuid):
@@ -53,9 +53,9 @@ def get_player_json_by_puuid(puuid):
     Get the json data of a player by puuid.
     """
 
-    api_url = "https://api.henrikdev.xyz/valorant/v2/by-puuid/mmr/eu/" + puuid
+    api_endpoint = "v2/by-puuid/mmr/eu/" + puuid
 
-    return get_response(api_url)
+    return get_response(api_endpoint)
 
 
 def get_elo(data):
@@ -117,15 +117,9 @@ def get_matches_json(Username, Tagline):
     Get the last 5 matches that where played by this user
     """
 
-    api_url = (
-        "https://api.henrikdev.xyz/valorant/v3/matches/eu/"
-        + Username
-        + "/"
-        + Tagline
-        + "?filter=competitive"
-    )
+    api_endpoint = "v3/matches/eu/" + Username + "/" + Tagline + "?filter=competitive"
 
-    return get_response(api_url)
+    return get_response(api_endpoint)
 
 
 def get_matches_json_by_puuid(puuid):
@@ -133,13 +127,9 @@ def get_matches_json_by_puuid(puuid):
     Get the last 5 matches that where played by this user
     """
 
-    api_url = (
-        "https://api.henrikdev.xyz/valorant/v3/by-puuid/matches/eu/"
-        + puuid
-        + "?filter=competitive"
-    )
+    api_endpoint = "v3/by-puuid/matches/eu/" + puuid + "?filter=competitive"
 
-    return get_response(api_url)
+    return get_response(api_endpoint)
 
 
 def get_matchid(data):
@@ -171,9 +161,9 @@ def get_mmr_json(puuid):
     Get the MMR history of a player.
     """
 
-    api_url = "https://api.henrikdev.xyz/valorant/v1/by-puuid/mmr-history/eu/" + puuid
+    api_endpoint = "v1/by-puuid/mmr-history/eu/" + puuid
 
-    return get_response(api_url)
+    return get_response(api_endpoint)
 
 
 def get_mmr_change(data, date):
@@ -205,9 +195,9 @@ def get_match_json(matchid):
     Get the match stats of a match.
     """
 
-    api_url = "https://api.henrikdev.xyz/valorant/v2/match/" + matchid
+    api_endpoint = "v2/match/" + matchid
 
-    return get_response(api_url)
+    return get_response(api_endpoint)
 
 
 def get_match_metadata(data):
