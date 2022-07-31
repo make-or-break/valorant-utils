@@ -17,7 +17,7 @@ def get_response(api_endpoint):
 
     response = requests.get("https://api.henrikdev.xyz/valorant/" + api_endpoint)
 
-    if response.status_code == 200:
+    if response.status_code == 200 and response.json()["status"] == 200:
         return response.json()
     else:
         return None
