@@ -60,7 +60,19 @@ def get_player_json_by_puuid(puuid):
 
     api_endpoint = "v2/by-puuid/mmr/eu/" + puuid
 
-    return get_response(api_endpoint)
+    if (response := get_response(api_endpoint)) is None:
+        return False
+
+    if not get_name(response):
+        return False
+
+    if not get_tag(response):
+        return False
+
+    if not get_puuid(response):
+        return False
+
+    return response
 
 
 ###############################################################################
