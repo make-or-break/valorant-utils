@@ -56,20 +56,32 @@ def get_puuid(data):
     return data["data"]["puuid"]
 
 
-def get_name(data):
+def get_name(data: json):
     """
     Get the name of a player.
     """
 
-    return data["data"]["name"]
+    if data is None:
+        return False
+
+    if (name := data["data"]["name"]) is None:
+        return False
+
+    return name
 
 
-def get_tag(data):
+def get_tag(data: json):
     """
     Get the tagline of a player.
     """
 
-    return data["data"]["tag"]
+    if data is None:
+        return False
+
+    if (tag := data["data"]["tag"]) is None:
+        return False
+
+    return tag
 
 
 ###############################################################################
