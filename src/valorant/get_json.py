@@ -69,9 +69,6 @@ def get_player_json_by_puuid(puuid):
     if not get_tag(response):
         return False
 
-    if not get_puuid(response):
-        return False
-
     return response
 
 
