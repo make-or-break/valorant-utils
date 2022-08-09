@@ -2,6 +2,10 @@ import json
 
 import requests
 
+from valorant.main import get_name
+from valorant.main import get_puuid
+from valorant.main import get_tag
+
 # API documentation:
 # https://docs.henrikdev.xyz/valorant.html
 
@@ -34,7 +38,19 @@ def get_player_json(Username, Tagline):
 
     api_endpoint = "v2/mmr/eu/" + Username + "/" + Tagline
 
-    return get_response(api_endpoint)
+    if (response := get_response(api_endpoint)) is None:
+        return False
+
+    if not get_name(response):
+        return False
+
+    if not get_tag(response):
+        return False
+
+    if not get_puuid(response):
+        return False
+
+    return response
 
 
 def get_player_json_by_puuid(puuid):

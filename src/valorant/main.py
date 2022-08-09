@@ -22,36 +22,49 @@ def milliseconds_to_time(milliseconds):
 # code related to getting player stats
 
 
-def get_elo(data):
+def get_elo(data: json):
     """
     Get the elo of a player.
     """
 
+    if not data:
+        return False
+
     return data["data"]["current_data"]["elo"]
 
 
-def get_rank(data):
+def get_rank(data: json):
     """
     Get the rank of a player.
     """
 
+    if not data:
+        return False
+
     return data["data"]["current_data"]["currenttierpatched"]
 
 
-def get_rank_tier(data):
+def get_rank_tier(data: json):
     """
     Get the rank tier of a player.
     """
+
+    if not data:
+        return False
+
     d = data["data"]["current_data"]["currenttier"]
     if not d:
         d = 0
     return d
 
 
-def get_puuid(data):
+def get_puuid(data: json):
     """
     Get the puuid of a player.
     """
+
+    if not data:
+        return False
 
     return data["data"]["puuid"]
 
@@ -61,7 +74,7 @@ def get_name(data: json):
     Get the name of a player.
     """
 
-    if data is None:
+    if not data:
         return False
 
     if (name := data["data"]["name"]) is None:
@@ -75,7 +88,7 @@ def get_tag(data: json):
     Get the tagline of a player.
     """
 
-    if data is None:
+    if not data:
         return False
 
     if (tag := data["data"]["tag"]) is None:
