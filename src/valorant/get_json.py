@@ -53,7 +53,7 @@ def get_player_json(Username, Tagline):
     return response
 
 
-def get_player_json_by_puuid(puuid):
+def get_player_json_by_puuid(puuid, retries=0):
     """
     Get the json data of a player by puuid.
     """
@@ -61,13 +61,25 @@ def get_player_json_by_puuid(puuid):
     api_endpoint = "v2/by-puuid/mmr/eu/" + puuid
 
     if (response := get_response(api_endpoint)) is None:
-        return False
+        if retries < 3:
+            retries += 1
+            return get_player_json_by_puuid(puuid, retries)
+        else:
+            return False
 
     if not get_name(response):
-        return False
+        if retries < 3:
+            retries += 1
+            return get_player_json_by_puuid(puuid, retries)
+        else:
+            return False
 
     if not get_tag(response):
-        return False
+        if retries < 3:
+            retries += 1
+            return get_player_json_by_puuid(puuid, retries)
+        else:
+            return False
 
     return response
 
