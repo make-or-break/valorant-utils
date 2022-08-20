@@ -3,7 +3,7 @@ import time
 import valorant.data as data
 
 
-def current_season():
+def current_season() -> tuple[int, str, time]:
     """
     Returns the current season.
     Data is pulles drom the data.py file.
