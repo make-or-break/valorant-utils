@@ -1,21 +1,52 @@
 import time
 
+import valorant.data as data
+
+
+def current_season():
+    """
+    Returns the current season.
+    Data is pulles drom the data.py file.
+    """
+
+    for season in data.COMPETETIVE_SEASONS:
+
+        start = time.mktime(
+            time.strptime(
+                data.COMPETETIVE_SEASONS[season]["start"], "%Y-%m-%dT%H:%M:%SZ"
+            )
+        )
+
+        end = time.mktime(
+            time.strptime(data.COMPETETIVE_SEASONS[season]["end"], "%Y-%m-%dT%H:%M:%SZ")
+        )
+
+        if time.time() > start and time.time() < end:
+            return (
+                season,
+                data.COMPETETIVE_SEASONS[(season)]["name"],
+                time.mktime(
+                    time.strptime(
+                        data.COMPETETIVE_SEASONS[(season)]["end"], "%Y-%m-%dT%H:%M:%SZ"
+                    )
+                ),
+            )
+
+    # if no season is found, return None
+    return None
+
 
 def act_end():
     """
-    Returns remaining hours of this act.
+    Returns remaining seconds of this act.
     """
 
-    # Episode 5 Act I ends August 23rd 2022
-    act_end = time.mktime(time.strptime("23/08/2022", "%d/%m/%Y"))
+    season, name, act_end = current_season()
 
-    diff = act_end - time.time()
-
-    # convert to hours
-    hours = diff / 60 / 60
-
-    return hours
+    return act_end - time.time()
 
 
 if __name__ == "__main__":
-    print(act_end())
+
+    print(current_season())
+    print(act_end() / 60 / 60)

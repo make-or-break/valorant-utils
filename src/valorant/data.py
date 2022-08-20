@@ -59,3 +59,22 @@ COMPETITIVE_RANK_GROUP = {
 # Ascendant #7CFFBC #30A66F #1E7644
 # Immortal #E6776E #BC314A #B02639
 # Radiant #FEFFFF #E3D193 #FFFFB0
+
+# https://valorant-api.com/v1/seasons
+COMPETETIVE_SEASONS = {
+    1: {
+        "name": "EPISODE 5 - ACT 1",
+        "start": "2022-06-21T00:00:00Z",
+        "end": "2022-08-23T00:00:00Z",
+    },
+    2: {
+        "name": "EPISODE 5 - ACT 2",
+        "start": "2022-08-23T00:00:00Z",
+        "end": "2022-10-18T00:00:00Z",
+    },
+    3: {
+        "name": "EPISODE 5 - ACT 3",
+        "start": "2022-10-18T00:00:00Z",
+        "end": "2023-01-10T00:00:00Z",
+    },
+}
