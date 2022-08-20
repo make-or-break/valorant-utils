@@ -36,7 +36,7 @@ def current_season() -> tuple[int, str, time]:
     return None
 
 
-def act_end():
+def act_left():
     """
     Returns remaining seconds of this act.
     """
