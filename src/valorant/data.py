@@ -93,3 +93,14 @@ COMPETETIVE_SEASONS = {
         "end": "2023-06-27T00:00:00Z",
     },
 }
+
+
+def get_name_rank_rr(rr: int) -> str:
+    """Get the name of the rank for the given rank points"""
+
+    for rank in RANK_VALUE:
+
+        if RANK_VALUE[rank]["elo"] != "null":
+
+            if rr < int(RANK_VALUE[rank]["elo"]):
+                return RANK_VALUE[rank - 1]["name"]
