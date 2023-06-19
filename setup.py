@@ -9,6 +9,10 @@ here = pathlib.Path(__file__).parent.resolve()
 # Get the long description from the README file
 long_description = (here / "README.md").read_text(encoding="utf-8")
 
+requires = [
+    "requests>=2.28.0",
+]
+
 setup(
     name="valorant-utils",
     version="0.2.0",
@@ -37,7 +41,7 @@ setup(
         "Programming Language :: Python :: 3 :: Only",
         "Typing :: Typed",
     ],
-    install_requires=["requests ~= 2.28.0"],
+    install_requires=requires,
     package_dir={"": "src/"},
     packages=["valorant"],
     test_suite="tests.TestValorant",
